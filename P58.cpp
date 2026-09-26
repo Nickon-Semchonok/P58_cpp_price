@@ -72,11 +72,11 @@ Github - hub (місце для розміщення) репозиторіїв �
 	але за наявного облікового запису
 	 
 -------------Система контролю версій. Продовження------------
-[ПК]      -- git init --    [git]
-Project (P58)
-  source     |              source
-  headers	 | git add .    headers
-  resources	 |              resources
+[ПК]      -- git init --    [git] -- git push -- [GitHub]
+Project (P58)                                    https://github.com/Nickon-Semchonok/P58_cpp_price
+  source     |              source    | git
+  headers	 | git add .    headers   | commit         push
+  resources	 |              resources | -m "message" -->
   references x
   x64		 x
 
