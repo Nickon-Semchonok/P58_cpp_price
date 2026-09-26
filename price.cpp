@@ -73,3 +73,48 @@ void Price::show() const {
 		node = node->next;
 	}
 }
+
+void Price::show_by_price_ascending() {
+	// сортування - переставляння неправильно впорядкованих єлементів
+	// до тих пір, поки їх не стане (всі у правильному порядку)
+	/* Перестановка у переліку:
+	*а) [p1|n]->[p2|n]->[p3|n]
+	* ! через те що стрктури великі, це тягне за собою багато операцій
+	*б) поміняти показчик на вузли
+	*  [p1|n]---------->[p3|n] - більш ефективна опереція
+	*        [p2|n]<---------|
+	*/
+	if (first == NULL) {
+		std::cout << "Price is empty" << std::endl;
+		return;
+	}
+	if (first == NULL) {
+		std::cout << first->product.to_string() << std::endl;
+		return;
+	}
+	bool is_ordered;
+	do {
+		is_ordered = true;
+		ListNode* node = first;
+		if (node->product.price > node->next->product.price) {
+			ListNode* tmp = first->next;
+			first->next = first->next->next;
+			first->next->next = first;
+			node = first = tmp;
+			is_ordered = false;
+		}
+		while (1) {
+			if (node->next->product.price > node->next->next->product.price) {
+				// порядок неправильний - міняемо порядок
+				ListNode* tmp = node->next;   // tmp = p2
+				node->next == node->next->next;   // p1.next = p3
+				node->next->next = node->next->next->next;   // p2.next = p3.next
+				node->next->next->next = tmp;   // p3.next = p2
+				is_ordered = false;
+			}
+			node = node->next; // переходимо до наступної
+		}
+	} while (!is_ordered);
+	// відображення переаеться на інший метод
+	show();
+}
